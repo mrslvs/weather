@@ -9,6 +9,7 @@ require_once ("./config/cors.php");
 require_once ("./config/db.php");
 require_once ("./models/User.php");
 require_once ("./includes/response.php");
+require_once ("./models/User.php");
 
 try {
   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -27,10 +28,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   // } else {
   //   echo "username free";
   // }
-  sendResponse(200, 'you sent get request');
+  // sendResponse(200, 'you sent get request');
 
+  // register('test', 'ok', 'x', $conn);
+  register('ok', 'test', 'x', $conn);
 } else {
-  sendResponse(404, 'you sent post request');
+  register('test2', 'test2', 'hesloheslo', $conn);
+  // sendResponse(404, 'you sent post request');
   //   $url = 'https://api.openweathermap.org/data/2.5/weather?lat=48&lon=17&appid=' . $_ENV['WEATHER_API_KEY'];
   //   $ch = curl_init($url);
   // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

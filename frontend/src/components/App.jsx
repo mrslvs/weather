@@ -15,9 +15,9 @@ function App() {
         withCredentials: true,
       });
       console.log("success");
-      console.log(response);
+      console.log(response.data);
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data);
     }
   };
 
