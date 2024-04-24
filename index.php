@@ -8,6 +8,7 @@ $dotenv->load();
 require_once ("./config/cors.php");
 require_once ("./config/db.php");
 require_once ("./models/User.php");
+require_once ("./includes/response.php");
 
 try {
   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -19,27 +20,29 @@ try {
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-  $isUsernameTaken = isUsernameTaken('x', $conn);
+  // $isUsernameTaken = isUsernameTaken('x', $conn);
 
-  if ($isUsernameTaken) {
-    echo "username taken";
-  } else {
-    echo "username free";
-  }
+  // if ($isUsernameTaken) {
+  //   echo "username taken";
+  // } else {
+  //   echo "username free";
+  // }
+  sendResponse(200, 'you sent get request');
 
 } else {
-  $url = 'https://api.openweathermap.org/data/2.5/weather?lat=48&lon=17&appid=' . $_ENV['WEATHER_API_KEY'];
-  $ch = curl_init($url);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  $response = curl_exec($ch);
+  sendResponse(404, 'you sent post request');
+  //   $url = 'https://api.openweathermap.org/data/2.5/weather?lat=48&lon=17&appid=' . $_ENV['WEATHER_API_KEY'];
+  //   $ch = curl_init($url);
+  // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  // $response = curl_exec($ch);
 
-  if ($response === false) {
-    echo 'Error: ' . curl_error($ch);
-  } else {
-    // Process the API response
-    echo $response;
-  }
+  // if ($response === false) {
+  //   echo 'Error: ' . curl_error($ch);
+  // } else {
+  //   // Process the API response
+  //   echo $response;
+  // }
 
-  curl_close($ch);
+  // curl_close($ch);
 }
 ?>
