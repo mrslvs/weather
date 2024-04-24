@@ -22,7 +22,14 @@ function isEmailTaken($email, $conn)
 
 function register($username, $email, $password, $conn)
 {
-    isUsernameTaken((string) $email, $conn);
-    isUsernameTaken((string) $username, $conn);
+    if (isUsernameTaken((string) $email, $conn)) {
+        sendResponse(409, 'Username taken');
+        return;
+    }
+
+    if (isUsernameTaken((string) $username, $conn)) {
+        sendResponse(409, 'Email already used');
+        return;
+    }
 }
 ?>
