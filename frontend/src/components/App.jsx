@@ -1,14 +1,36 @@
 import { useState } from "react";
 import "../assets/styles/index.scss";
+import axiosInstance from "../api/axiosInstance";
 
 function App() {
   const [count, setCount] = useState(0);
+
+  const send = async (e) => {
+    e.preventDefault();
+
+    const x = document.getElementById("x").value;
+
+    try {
+      const response = await axiosInstance.post("/", x, {
+        withCredentials: true,
+      });
+      console.log("success");
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
       <div className="test">
         <p>hello world!</p>
-        <button className="btn btn-primary">Bootstrap button</button>
+        <form onSubmit={send}>
+          <input type="text" placeholder="Enter x" id="x" />
+          <button type="submit" className="btn btn-primary">
+            Bootstrap button
+          </button>
+        </form>
       </div>
     </>
   );
