@@ -7,6 +7,7 @@ $dotenv->load();
 
 require_once ("./config/cors.php");
 require_once ("./config/db.php");
+require_once ("./models/User.php");
 
 try {
   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -18,7 +19,13 @@ try {
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-  echo 'ok';
+  $isUsernameTaken = isUsernameTaken('x', $conn);
+
+  if ($isUsernameTaken) {
+    echo "username taken";
+  } else {
+    echo "username free";
+  }
 
 } else {
   $url = 'https://api.openweathermap.org/data/2.5/weather?lat=48&lon=17&appid=' . $_ENV['WEATHER_API_KEY'];
