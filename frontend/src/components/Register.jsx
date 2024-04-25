@@ -5,14 +5,17 @@ const Register = () => {
   const register = async (e) => {
     e.preventDefault();
 
-    const x = document.getElementById("x").value;
+    const registerData = {
+      username: document.getElementById("username").value,
+      email: document.getElementById("email").value,
+      password: document.getElementById("password").value,
+    };
 
     try {
-      const response = await axiosInstance.post("/register", x, {
+      const response = await axiosInstance.post("/register", registerData, {
         withCredentials: true,
       });
       console.log("success");
-      console.log(response.data);
     } catch (err) {
       console.log(err);
     }
@@ -20,9 +23,21 @@ const Register = () => {
 
   return (
     <form onSubmit={register}>
-      <input type="text" placeholder="Enter x" id="x" />
+      <input
+        type="text"
+        id="username"
+        name="username"
+        placeholder="Enter username"
+      />
+      <input type="text" id="email" name="email" placeholder="Enter email" />
+      <input
+        type="text"
+        id="password"
+        name="password"
+        placeholder="Enter password"
+      />
       <button type="submit" className="btn btn-primary">
-        Bootstrap button
+        Register
       </button>
     </form>
   );
