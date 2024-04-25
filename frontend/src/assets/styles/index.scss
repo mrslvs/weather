@@ -1,5 +1,13 @@
-$primary-color: #62dee4;
+$primary: #5fa12c;
 
 .test {
-  background-color: $primary-color;
+  // background-color: $primary;
 }
+
+.primary-btn {
+  @extend .btn;
+  color: black;
+  border: 2px dotted;
+}
+
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
