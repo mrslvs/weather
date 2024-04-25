@@ -19,7 +19,6 @@ try {
   echo "Connection failed: " . $e->getMessage();
 }
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   // $isUsernameTaken = isUsernameTaken('x', $conn);
 
@@ -31,9 +30,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   // sendResponse(200, 'you sent get request');
 
   // register('test', 'ok', 'x', $conn);
-  register('ok', 'test', 'x', $conn);
+  // register('ok', 'test', 'x', $conn);
+  // $y = $_GET["dataObject"];
+  // echo $y;
+
+  $data = file_get_contents('php://input'); // Get raw data from the body of http request
+  $dataObject = json_decode($data, true);
+  $y = $dataObject['y'];
+  echo $y;
+
+  // echo 'getrequest';
+  // sendResponse(200, $y);
 } else {
-  register('test2', 'test2', 'hesloheslo', $conn);
+  // register('test2', 'test2', 'hesloheslo', $conn);
+
+
+  // $y = $_POST["dataObject"];
+  // echo $y;
+  $data = file_get_contents('php://input'); // Get raw data from the body of http request
+  $dataObject = json_decode($data, true);
+  $y = $dataObject['y'];
+  echo $y;
+
   // sendResponse(404, 'you sent post request');
   //   $url = 'https://api.openweathermap.org/data/2.5/weather?lat=48&lon=17&appid=' . $_ENV['WEATHER_API_KEY'];
   //   $ch = curl_init($url);
