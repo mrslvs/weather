@@ -15,9 +15,6 @@ require_once ("./includes/database.php");
 $method = $_SERVER['REQUEST_METHOD'];
 $request = str_replace('/weather', '', $_SERVER['REQUEST_URI']);
 
-// echo $request;
-
-
 switch ($method) {
   case 'GET':
     switch ($request) {
@@ -32,7 +29,7 @@ switch ($method) {
   case 'POST':
     switch ($request) {
       case '/register':
-        sendResponse(201, 'registered - created');
+        register(file_get_contents('php://input'), $conn);
         break;
       default:
         sendResponse(404, "Not found");
