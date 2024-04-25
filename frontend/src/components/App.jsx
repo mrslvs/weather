@@ -30,7 +30,7 @@ function App() {
     <>
       <div className="test">
         <p>hello world!</p>
-        {/* <Register />   */}
+        <Register />
 
         <form onSubmit={send}>
           <input

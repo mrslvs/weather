@@ -1,4 +1,5 @@
 import React from "react";
+import axiosInstance from "../api/axiosInstance";
 
 const Register = () => {
   const register = async (e) => {
@@ -7,13 +8,13 @@ const Register = () => {
     const x = document.getElementById("x").value;
 
     try {
-      const response = await axiosInstance.post("/", x, {
+      const response = await axiosInstance.post("/register", x, {
         withCredentials: true,
       });
       console.log("success");
       console.log(response.data);
     } catch (err) {
-      console.log(err.response.data);
+      console.log(err);
     }
   };
 

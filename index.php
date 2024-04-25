@@ -20,6 +20,16 @@ try {
   echo "Connection failed: " . $e->getMessage();
 }
 
+// Check if it's a POST request
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+  // Check if the endpoint matches
+  if (parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) === '/register') {
+    echo "register route ok";
+  }
+}
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   // $isUsernameTaken = isUsernameTaken('x', $conn);
 
