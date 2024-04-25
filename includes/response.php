@@ -9,7 +9,6 @@ function sendResponse($statusCode, $message)
 
     // Create response data
     $response = array(
-        'status' => $statusCode,
         'message' => $message
     );
 

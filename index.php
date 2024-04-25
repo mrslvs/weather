@@ -38,8 +38,9 @@ switch ($method) {
         sendResponse(404, "Not found");
         break;
     }
+    break;
   default:
-    sendResponse(405, "Method {$method} Not Allowed");
+    sendResponse(404, "Method {$method} nnot Allowed");
     break;
 }
 
