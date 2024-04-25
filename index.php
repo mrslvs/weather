@@ -10,6 +10,7 @@ require_once ("./config/db.php");
 require_once ("./models/User.php");
 require_once ("./includes/response.php");
 require_once ("./models/User.php");
+require_once ("./controllers/authController.php");
 
 try {
   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
