@@ -16,6 +16,7 @@ const Register = () => {
         withCredentials: true,
       });
       console.log("success");
+      console.log(response);
     } catch (err) {
       console.log(err);
     }
