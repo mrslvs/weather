@@ -1,13 +1,9 @@
-$primary: #5fa12c;
+$theme-colors: (
+  "primary": #23671c,
+);
+
+@import "../../../node_modules/bootstrap/scss/bootstrap";
 
 .test {
-  // background-color: $primary;
+  background-color: rgb(222, 248, 255);
 }
-
-.primary-btn {
-  @extend .btn;
-  color: black;
-  border: 2px dotted;
-}
-
-@import "../../../node_modules/bootstrap/scss/bootstrap.scss";

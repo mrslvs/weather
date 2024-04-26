@@ -1,5 +1,6 @@
 import React from "react";
 import axiosInstance from "../api/axiosInstance";
+// import "../assets/styles/index.scss";
 
 const Register = () => {
   const register = async (e) => {
@@ -23,19 +24,27 @@ const Register = () => {
   };
 
   return (
-    <form onSubmit={register}>
+    <form onSubmit={register} className="container">
       <input
         type="text"
         id="username"
         name="username"
         placeholder="Enter username"
+        className="form-control mb-3"
       />
-      <input type="text" id="email" name="email" placeholder="Enter email" />
+      <input
+        type="text"
+        id="email"
+        name="email"
+        placeholder="Enter email"
+        className="form-control mb-3"
+      />
       <input
         type="text"
         id="password"
         name="password"
         placeholder="Enter password"
+        className="form-control mb-3"
       />
       <button type="submit" className="btn btn-primary">
         Register

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./components/App.jsx";
 
 // SCSS
-import "./assets/styles/index.scss";
+// import "./assets/styles/index.scss";
 // BOOTSTRAP
 import "bootstrap/dist/css/bootstrap.min.css";
 
