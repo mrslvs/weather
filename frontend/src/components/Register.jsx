@@ -40,7 +40,7 @@ const Register = () => {
         className="form-control mb-3"
       />
       <input
-        type="text"
+        type="password"
         id="password"
         name="password"
         placeholder="Enter password"
