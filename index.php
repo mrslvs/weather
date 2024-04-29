@@ -15,6 +15,9 @@ $method = $_SERVER['REQUEST_METHOD'];
 $request = str_replace('/weather', '', $_SERVER['REQUEST_URI']);
 
 switch ($method) {
+  case "OPTIONS":
+    sendResponse(200, "preflight ok"); //prefligt request error " Response to preflight request doesn't pass access control check: It does not have HTTP ok status"
+    break;
   case 'GET':
     switch ($request) {
       case '/':

@@ -37,18 +37,18 @@ function register($rawData, $conn)
 
     $hashed_password = password_hash($data['password'], PASSWORD_DEFAULT);
 
-    $sql = 'INSERT INTO user (username, email, password_hash) VALUES (:username, :email, :password_hash)';
+    $sql = 'INSERT INTO user (username, email, password) VALUES (:username, :email, :password)';
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':username', $data['username']);
     $stmt->bindParam(':email', $data['email']);
-    $stmt->bindParam(':password_hash', $hashed_password);
+    $stmt->bindParam(':password', $hashed_password);
 
     if ($stmt->execute()) {
         // Registration successful
         sendResponse(201, 'Registration successful');
     } else {
         // Error occurred while executing the SQL statement
-        sendResponse(500, 'Error registering user');
+        sendResponse(200, 'Error registering user');
     }
 }
 ?>
