@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import '../assets/styles/index.scss';
 import Register from './Register';
 import Map from './Map';
+import Login from './Login';
 
 function App() {
     const [lat, setLat] = useState(0);
@@ -15,6 +16,8 @@ function App() {
         <>
             <div className="container">
                 <Register />
+                <br />
+                <Login />
                 <Map setLat={setLat} setLon={setLon} />
             </div>
         </>
