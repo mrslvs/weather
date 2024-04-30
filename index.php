@@ -33,9 +33,13 @@ switch ($method) {
       case '/register':
         register(file_get_contents('php://input'), $conn);
         break;
-        case '/login':
-          login(file_get_contents('php://input'), $conn);
-          break;
+      case '/login':
+        login(file_get_contents('php://input'), $conn);
+        break;
+      case '/app':
+        // login(file_get_contents('php://input'), $conn);
+        echo "okiiii";
+        break;
       default:
         sendResponse(404, "Not found");
         break;

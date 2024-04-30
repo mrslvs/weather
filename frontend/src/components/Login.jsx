@@ -1,8 +1,12 @@
 import React from 'react';
 import axiosInstance from '../api/axiosInstance';
+import useAuth from '../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 // import "../assets/styles/index.scss";
 
 const Login = () => {
+    const { user, setUser } = useAuth();
+    const navigate = useNavigate();
     const login = async (e) => {
         e.preventDefault();
 
@@ -15,8 +19,10 @@ const Login = () => {
             const response = await axiosInstance.post('/login', loginData, {
                 withCredentials: true,
             });
-            console.log('success');
             console.log(response);
+            setUser({ user: 'testUser', isLoggedIn: true });
+            // if (user) console.log('got user');
+            navigate('/app');
         } catch (err) {
             console.log(err);
         }
