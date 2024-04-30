@@ -32,7 +32,10 @@ function login($rawData, $conn){
     }else if(!$User){
         sendResponse(404, "User error");
     }else{
-        sendResponse(200, "Login successful and id is: {$User->getId()}");
+        session_start();
+        $_SESSION['userId'] = $User->getId();
+        $_SESSION['username'] = $User->getUsername();
+        sendResponse(200, "Login successful and id is: {$User->getId()} username is: {$User->getUsername()}");
     }
 }
 ?>
