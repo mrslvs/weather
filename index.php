@@ -40,6 +40,16 @@ switch ($method) {
         // login(file_get_contents('php://input'), $conn);
         echo "okiiii";
         break;
+      case '/logout':
+        session_start();
+        if (isset($_COOKIE[session_name()])) {
+            session_destroy();
+            setcookie(session_name(), '', time() - 3600, '/'); //destroy cookie
+            sendResponse(200, 'logged out');
+        } else {
+            sendResponse(404, 'no session');
+        }
+        break;
       default:
         sendResponse(404, "Not found");
         break;

@@ -35,7 +35,15 @@ function login($rawData, $conn){
         session_start();
         $_SESSION['userId'] = $User->getId();
         $_SESSION['username'] = $User->getUsername();
-        sendResponse(200, "Login successful and id is: {$User->getId()} username is: {$User->getUsername()}");
+
+        $responseUser = array(
+            'userId' => $User->getId(),
+            'username' => $User->getUsername(),
+        );
+    
+
+        // sendResponse(200, "Login successful and id is: {$User->getId()} username is: {$User->getUsername()}");
+        sendResponse(200, $responseUser);
     }
 }
 ?>

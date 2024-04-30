@@ -19,9 +19,11 @@ const Login = () => {
             const response = await axiosInstance.post('/login', loginData, {
                 withCredentials: true,
             });
-            console.log(response);
-            setUser({ user: 'testUser', isLoggedIn: true });
-            // if (user) console.log('got user');
+            const tempUser = {
+                userId: response.data.message.userId,
+                username: response.data.message.username,
+            };
+            setUser({ user: tempUser, isLoggedIn: true });
             navigate('/app');
         } catch (err) {
             console.log(err);

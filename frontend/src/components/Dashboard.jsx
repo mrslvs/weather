@@ -1,14 +1,22 @@
 import React from 'react';
 import useAuth from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../api/axiosInstance';
 
 const Dashboard = () => {
     const { user, setUser } = useAuth();
     const navigate = useNavigate();
 
-    const logout = () => {
-        setUser({ user: '', isLoggedIn: false });
-        navigate('/');
+    const logout = async () => {
+        try {
+            const response = await axiosInstance.post('/logout', null, {
+                withCredentials: true,
+            });
+            setUser({ user: '', isLoggedIn: false });
+            navigate('/');
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     return (
