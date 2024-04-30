@@ -15,7 +15,7 @@ function App() {
     return (
         <>
             <div className="container">
-                <Register />
+                {/* <Register /> */}
                 <br />
                 <Login />
                 <Map setLat={setLat} setLon={setLon} />

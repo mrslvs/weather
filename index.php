@@ -7,7 +7,7 @@ $dotenv->load();
 require_once ("./config/cors.php");
 require_once ("./models/User.php");
 require_once ("./includes/response.php");
-require_once ("./models/User.php");
+// require_once ("./models/User.php");
 require_once ("./controllers/authController.php");
 require_once ("./includes/database.php");
 
@@ -33,6 +33,9 @@ switch ($method) {
       case '/register':
         register(file_get_contents('php://input'), $conn);
         break;
+        case '/login':
+          login(file_get_contents('php://input'), $conn);
+          break;
       default:
         sendResponse(404, "Not found");
         break;
