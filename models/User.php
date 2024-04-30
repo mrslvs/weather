@@ -50,6 +50,42 @@ class User
         $this->password = $password;
     }
 
+    public static function isEmailTaken($email, $conn){
+        $sql = 'SELECT COUNT(*) FROM user WHERE email = :email';
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+        return $count > 0;
+    }
+
+    public static function isUsernameTaken ($username, $conn){
+        $sql = 'SELECT COUNT(*) FROM user WHERE username = :username';
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':username', $username);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+        return $count > 0;
+    }
+
+    public static function saveUserToDatabase ($username, $email, $password, $conn){
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        $sql = 'INSERT INTO user (username, email, password) VALUES (:username, :email, :password)';
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $hashed_password);
+
+        if ($stmt->execute()) {
+            // Registration successful
+            return true;
+        } else {
+            // Error occurred while executing the SQL statement
+            return false;
+        }
+    }
+
     public static function getUserByUsername($username, $conn){
         $sql = 'SELECT * FROM user WHERE username = :username';
         $stmt = $conn->prepare($sql);
