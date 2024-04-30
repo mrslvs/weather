@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useAuth from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../api/axiosInstance';
+import Map from './Map';
 
 const Dashboard = () => {
     const { user, setUser } = useAuth();
     const navigate = useNavigate();
+
+    const [lat, setLat] = useState(0);
+    const [lon, setLon] = useState(0);
+
+    useEffect(() => {
+        console.log(lat + ',' + lon);
+    }, [lat, lon]);
 
     const logout = async () => {
         try {
@@ -25,6 +33,7 @@ const Dashboard = () => {
             <button type="submit" onClick={logout} className="btn btn-danger">
                 Logout
             </button>
+            <Map setLat={setLat} setLon={setLon} />
         </div>
     );
 };
