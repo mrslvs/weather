@@ -47,7 +47,7 @@ switch ($method) {
             setcookie(session_name(), '', time() - 3600, '/'); //destroy cookie
             sendResponse(200, 'logged out');
         } else {
-            sendResponse(404, 'no session');
+            sendResponse(204, 'no session');
         }
         break;
       default:
