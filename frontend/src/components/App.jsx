@@ -5,10 +5,16 @@ import Login from './Login';
 import Header from './Header';
 
 function App() {
+    const [selection, setSelection] = useState('login');
+
+    useEffect(() => {
+        console.log(selection);
+    }, [selection]);
+
     return (
         <>
             <div className="container">
-                <Header />
+                <Header setSelection={setSelection} />
                 {/* <Register /> */}
                 <br />
                 <Login />

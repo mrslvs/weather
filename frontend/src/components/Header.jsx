@@ -1,21 +1,22 @@
-import { useState } from 'react';
-import { IoMdMenu } from 'react-icons/io';
-// import '../assets/styles/index.scss';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
-const Header = () => {
-    const { selection, setSelection } = useState('login');
-
+function Header({ setSelection }) {
     return (
-        <header>
-            <nav className="custom-navbar">
-                <IoMdMenu className="menu-icon" />
-                <div className="menu-dropdown">
-                    <button className="btn btn-outline-primary mr-2">Login</button>
-                    <button className="btn btn-outline-primary">Register</button>
-                </div>
-            </nav>
-        </header>
+        <Navbar expand="lg" className="bg-body-tertiary">
+            <Container>
+                <Navbar.Brand href="#home">Weather</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="me-auto">
+                        <Nav.Link onClick={() => setSelection('login')}>Login</Nav.Link>
+                        <Nav.Link onClick={() => setSelection('register')}>Register</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     );
-};
+}
 
 export default Header;
