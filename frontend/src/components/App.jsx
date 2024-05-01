@@ -6,18 +6,21 @@ import Header from './Header';
 
 function App() {
     const [selection, setSelection] = useState('login');
-
-    useEffect(() => {
-        console.log(selection);
-    }, [selection]);
-
     return (
         <>
             <div className="container">
                 <Header setSelection={setSelection} />
-                {/* <Register /> */}
-                <br />
-                <Login />
+
+                {(() => {
+                    switch (selection) {
+                        case 'login':
+                            return <Login />;
+                        case 'register':
+                            return <Register />;
+                        default:
+                            return null; // Or any default component if needed
+                    }
+                })()}
             </div>
         </>
     );
