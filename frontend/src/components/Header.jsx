@@ -4,9 +4,11 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Button } from 'react-bootstrap';
 import axiosInstance from '../api/axiosInstance';
+import { useNavigate } from 'react-router-dom';
 
 function Header({ setSelection }) {
     const { user, setUser } = useAuth();
+    const navigate = useNavigate();
 
     const logout = async () => {
         try {

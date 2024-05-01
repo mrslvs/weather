@@ -7,6 +7,7 @@ import { Form, Button } from 'react-bootstrap';
 const Login = () => {
     const { user, setUser } = useAuth();
     const navigate = useNavigate();
+
     const login = async (e) => {
         e.preventDefault();
 

@@ -1,19 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
 import Map from './Map';
 import Header from './Header';
+import axiosInstance from '../api/axiosInstance';
 
 const Dashboard = () => {
     const { user, setUser } = useAuth();
-    const navigate = useNavigate();
 
     const [lat, setLat] = useState(0);
     const [lon, setLon] = useState(0);
 
     useEffect(() => {
         console.log(lat + ',' + lon);
+        sendGPS();
     }, [lat, lon]);
+
+    const sendGPS = async () => {
+        const gps = {
+            lat: lat,
+            lon: lon,
+        };
+
+        try {
+            const response = await axiosInstance.post('/gps', gps, {
+                withCredentials: true,
+            });
+            console.log(response);
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     return (
         <div>

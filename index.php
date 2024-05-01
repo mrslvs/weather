@@ -10,6 +10,7 @@ require_once ("./includes/response.php");
 // require_once ("./models/User.php");
 require_once ("./controllers/authController.php");
 require_once ("./includes/database.php");
+require_once ("./controllers/weatherController.php");
 
 $method = $_SERVER['REQUEST_METHOD'];
 $request = str_replace('/weather', '', $_SERVER['REQUEST_URI']);
@@ -49,6 +50,9 @@ switch ($method) {
         } else {
             sendResponse(204, 'no session');
         }
+        break;
+      case '/gps':
+        getWeather(file_get_contents('php://input'), $conn);
         break;
       default:
         sendResponse(404, "Not found");
