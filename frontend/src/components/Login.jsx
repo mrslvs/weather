@@ -2,6 +2,7 @@ import React from 'react';
 import axiosInstance from '../api/axiosInstance';
 import useAuth from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
 
 const Login = () => {
     const { user, setUser } = useAuth();
@@ -30,25 +31,17 @@ const Login = () => {
     };
 
     return (
-        <form onSubmit={login} className="container">
-            <input
-                type="text"
-                id="username"
-                name="username"
-                placeholder="Enter username"
-                className="form-control mb-3"
-            />
-            <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Enter password"
-                className="form-control mb-3"
-            />
-            <button type="submit" className="btn btn-primary">
+        <Form onSubmit={login}>
+            <Form.Group controlId="username" className="mb-2">
+                <Form.Control type="text" placeholder="Enter username" />
+            </Form.Group>
+            <Form.Group controlId="password" className="mb-2">
+                <Form.Control type="password" placeholder="Enter password" />
+            </Form.Group>
+            <Button variant="primary" type="submit">
                 Login
-            </button>
-        </form>
+            </Button>
+        </Form>
     );
 };
 
