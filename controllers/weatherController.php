@@ -29,9 +29,9 @@ function getWeather($rawData, $test){
     curl_close($curl);
 
     $data = json_decode($response, true);
-    
-    echo "Weather for " . $data['name'] . ": " . $data['weather'][0]['description'];
 
-    // sendResponse(201, "lat: {$data['lat']} and lon: {$data['lon']}");
+    // echo "Weather for " . $data['name'] . ": " . $data['weather'][0]['description'];
+
+    sendResponse(200, $data);
 }
 ?>

@@ -25,7 +25,7 @@ const Dashboard = () => {
             const response = await axiosInstance.post('/gps', gps, {
                 withCredentials: true,
             });
-            console.log(response);
+            console.log(response.data.message.name);
         } catch (err) {
             console.log(err);
         }
