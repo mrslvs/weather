@@ -24,7 +24,6 @@ const Register = () => {
     };
 
     return (
-        // <form onSubmit={register} className="container">
         <Form onSubmit={register}>
             <Form.Group controlId="username" className="mb-2">
                 <Form.Control type="text" placeholder="Enter username" />

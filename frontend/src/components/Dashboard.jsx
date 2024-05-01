@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import axiosInstance from '../api/axiosInstance';
 import Map from './Map';
+import Header from './Header';
 
 const Dashboard = () => {
     const { user, setUser } = useAuth();
@@ -15,24 +15,9 @@ const Dashboard = () => {
         console.log(lat + ',' + lon);
     }, [lat, lon]);
 
-    const logout = async () => {
-        try {
-            const response = await axiosInstance.post('/logout', null, {
-                withCredentials: true,
-            });
-            setUser({ user: '', isLoggedIn: false });
-            navigate('/');
-        } catch (err) {
-            console.log(err);
-        }
-    };
-
     return (
         <div>
-            <p>Dash</p>
-            <button type="submit" onClick={logout} className="btn btn-danger">
-                Logout
-            </button>
+            <Header />
             <Map setLat={setLat} setLon={setLon} />
         </div>
     );
