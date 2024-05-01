@@ -2,7 +2,6 @@ import React from 'react';
 import axiosInstance from '../api/axiosInstance';
 import useAuth from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-// import "../assets/styles/index.scss";
 
 const Login = () => {
     const { user, setUser } = useAuth();

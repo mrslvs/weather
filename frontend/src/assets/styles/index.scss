@@ -1,9 +1,26 @@
 $theme-colors: (
-  "primary": #23671c,
+    'primary': #23671c,
 );
 
-@import "../../../node_modules/bootstrap/scss/bootstrap";
+@import '../../../node_modules/bootstrap/scss/bootstrap';
 
 .test {
-  background-color: rgb(222, 248, 255);
+    background-color: rgb(222, 248, 255);
+}
+
+.custom-navbar {
+    // @extend .navbar;
+    background-color: $indigo-100;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-icon {
+    width: 2rem;
+    height: 2rem;
+}
+
+.mr-2 {
+    @extend .mr-2;
+    margin-right: 2rem;
 }
