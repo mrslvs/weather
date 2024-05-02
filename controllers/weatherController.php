@@ -1,4 +1,8 @@
 <?php
+
+function kelvinToCelsius($tempKelvin) {
+    return $tempKelvin - 273.15;
+}
 function getWeather($rawData, $test){
     $data = json_decode($rawData, true);
     
@@ -30,8 +34,26 @@ function getWeather($rawData, $test){
 
     $data = json_decode($response, true);
 
+    $weatherData = [
+        'id' => uniqid('', true), // used for frontend displaying
+        'location' => $data['name'],
+        'country' => $data['sys']['country'],
+        'feels_like' => $data['main']['feels_like'],
+        'humidity' => $data['main']['humidity'],
+        'pressure' => $data['main']['pressure'],
+        'temp' => kelvinToCelsius($data['main']['temp']),
+        'temp_min' => kelvinToCelsius($data['main']['temp_min']),
+        'temp_max' => kelvinToCelsius($data['main']['temp_max']),
+        // 'clouds' => $data['clouds'],
+        'sunrise' => $data['sys']['sunrise'],
+        'sunset' => $data['sys']['sunset'],
+        'weather' => $data['weather'][0]['main'],
+    ];
+
+
     // echo "Weather for " . $data['name'] . ": " . $data['weather'][0]['description'];
 
-    sendResponse(200, $data);
+    // sendResponse(200, $data);
+    sendResponse(200, $weatherData);
 }
 ?>
