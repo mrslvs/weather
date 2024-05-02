@@ -3,7 +3,7 @@ import L from 'leaflet';
 
 import 'leaflet/dist/leaflet.css';
 
-const Map = ({ setLat, setLon }) => {
+const Map = ({ setGps }) => {
     useEffect(() => {
         const map = L.map('map').setView([0, 0], 2);
 
@@ -15,15 +15,14 @@ const Map = ({ setLat, setLon }) => {
         map.on('click', (e) => {
             const { lat, lng } = e.latlng;
 
-            setLat(lat);
-            setLon(lng);
+            setGps([lat, lng]);
         });
 
         return () => {
             map.off('click');
             map.remove();
         };
-    }, [setLat, setLon]);
+    }, [setGps]);
 
     return <div id="map" style={{ width: '100%', height: '400px' }} />;
 };

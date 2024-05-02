@@ -1,31 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import useAuth from '../hooks/useAuth';
 import Map from './Map';
 import Header from './Header';
 import axiosInstance from '../api/axiosInstance';
+import WeatherCard from './WeatherCard';
 
 const Dashboard = () => {
-    const { user, setUser } = useAuth();
+    const [weatherData, setWeatherData] = useState([]);
+    const [idCounter, setIdCounter] = useState(0);
 
-    const [lat, setLat] = useState(0);
-    const [lon, setLon] = useState(0);
+    const [gps, setGps] = useState([]);
 
     useEffect(() => {
-        console.log(lat + ',' + lon);
+        console.log(gps[0] + ',' + gps[1]);
         sendGPS();
-    }, [lat, lon]);
+    }, [gps]);
 
     const sendGPS = async () => {
-        const gps = {
-            lat: lat,
-            lon: lon,
+        const gpsObj = {
+            lat: gps[0],
+            lon: gps[1],
         };
 
         try {
-            const response = await axiosInstance.post('/gps', gps, {
+            const response = await axiosInstance.post('/gps', gpsObj, {
                 withCredentials: true,
             });
-            console.log(response.data.message.name);
+
+            const cardData = {
+                location: response.data.message.name,
+            };
+            console.log(response);
+            setIdCounter((prevId) => prevId + 1);
+            setWeatherData((prevData) => [...prevData, cardData]);
         } catch (err) {
             console.log(err);
         }
@@ -34,7 +40,12 @@ const Dashboard = () => {
     return (
         <div>
             <Header />
-            <Map setLat={setLat} setLon={setLon} />
+            <Map setGps={setGps} />
+            <>
+                {weatherData.map((cardData) => (
+                    <WeatherCard key={idCounter} cardData={cardData} />
+                ))}
+            </>
         </div>
     );
 };
