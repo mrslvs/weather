@@ -1,7 +1,7 @@
 <?php
 
 function kelvinToCelsius($tempKelvin) {
-    return $tempKelvin - 273.15;
+    return round($tempKelvin - 273.15);
 }
 function getWeather($rawData, $test){
     $data = json_decode($rawData, true);
