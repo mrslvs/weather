@@ -6,8 +6,6 @@ import WeatherCard from './WeatherCard';
 
 const Dashboard = () => {
     const [weatherData, setWeatherData] = useState([]);
-    const [idCounter, setIdCounter] = useState(0);
-
     const [gps, setGps] = useState([]);
 
     useEffect(() => {
@@ -26,11 +24,35 @@ const Dashboard = () => {
                 withCredentials: true,
             });
 
+            const {
+                id,
+                location,
+                country,
+                feels_like,
+                humidity,
+                pressure,
+                temp,
+                temp_min,
+                temp_max,
+                sunrise,
+                sunset,
+                weather,
+            } = response.data.message;
             const cardData = {
-                location: response.data.message.name,
+                id,
+                location,
+                country,
+                feels_like,
+                humidity,
+                pressure,
+                temp,
+                temp_min,
+                temp_max,
+                sunrise,
+                sunset,
+                weather,
             };
-            console.log(response);
-            setIdCounter((prevId) => prevId + 1);
+            // console.log(cardData);
             setWeatherData((prevData) => [...prevData, cardData]);
         } catch (err) {
             console.log(err);
@@ -43,7 +65,7 @@ const Dashboard = () => {
             <Map setGps={setGps} />
             <>
                 {weatherData.map((cardData) => (
-                    <WeatherCard key={idCounter} cardData={cardData} />
+                    <WeatherCard key={cardData.id} cardData={cardData} />
                 ))}
             </>
         </div>
