@@ -3,6 +3,7 @@ import Map from './Map';
 import Header from './Header';
 import axiosInstance from '../api/axiosInstance';
 import WeatherCard from './WeatherCard';
+import Footer from './Footer';
 
 const Dashboard = () => {
     const [weatherData, setWeatherData] = useState([]);
@@ -68,6 +69,7 @@ const Dashboard = () => {
                     <WeatherCard key={cardData.id} cardData={cardData} />
                 ))}
             </>
+            <Footer />
         </div>
     );
 };
