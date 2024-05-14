@@ -1,7 +1,10 @@
+import Clear from '../assets/pictures/Clear.jpeg';
+
 const WeatherCard = ({ cardData }) => {
+    
     return (
-        <div className="weather-card">
-            <span>
+        <div className="weather-card" style={{ backgroundImage: `url(${Clear})` }}>
+            <span className="weather-card-text">
                 Weather at {cardData.location} ({cardData.country})
             </span>
             <p>{cardData.temp}</p>
